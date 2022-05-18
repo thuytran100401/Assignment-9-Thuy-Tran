@@ -15,34 +15,30 @@
  *         May 18, 2022
  */
 
-import java.util.Scanner;
-import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class CreateFile {
-    public static void main(String[] args) {
-        try {
-            Scanner sc = new Scanner(System.in);
 
-            // create a writer to append input to the end of the file
-            FileWriter writer = new FileWriter("command_line_input.txt");
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        File f = new File("command_line_input.txt");
+        PrintWriter pw = new PrintWriter(f);
+        System.out.println("Enter input string : ");
+        while (sc.hasNextLine()) {
 
-            // enter input
-            String input;
-            System.out.println("Input: ");
-            input = sc.nextLine();
-
-            // use "@q" to close and save the file
-            while (!input.equals("@q")) {
-                writer.write(input + "\n");
-                input = sc.nextLine();
+            String input = sc.nextLine();
+            if (input.equals("@q")) {
+                break;
+            } else {
+                pw.write(input + "\n");
             }
-            writer.close();
-            sc.close();
-            System.out.println("Successfully wrote input to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
         }
+        pw.close();
+        sc.close();
+
     }
+
 }
