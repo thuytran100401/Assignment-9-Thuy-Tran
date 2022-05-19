@@ -12,7 +12,7 @@
  * implement all necessary exception handling to account for invalid use cases.
  * 
  * @author Thuy Tran
- *         May 18, 2022
+ *         May 17, 2022
  */
 
 import java.io.File;
@@ -24,19 +24,19 @@ public class CreateFile {
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        File f = new File("command_line_input.txt");
-        PrintWriter pw = new PrintWriter(f);
-        System.out.println("Enter input string : ");
-        while (sc.hasNextLine()) {
+        File file = new File("command_line_input.txt");
+        PrintWriter writer = new PrintWriter(file);
+        System.out.println("Enter input: ");
 
+        while (sc.hasNextLine() ) {
             String input = sc.nextLine();
-            if (input.equals("@q")) {
+            if (input.equalsIgnoreCase("@q")) {
                 break;
             } else {
-                pw.write(input + "\n");
+                writer.write(input + "\n");
             }
         }
-        pw.close();
+        writer.close();
         sc.close();
 
     }

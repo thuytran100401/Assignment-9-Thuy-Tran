@@ -16,10 +16,13 @@ import java.io.IOException;
 public class ReadFileInput {
 
     public static void main(String[] args) throws IOException {
+        // open file
         File file = new File("quote.txt");
+        // read file
         BufferedReader br = new BufferedReader(new FileReader(file));
         String lines = br.readLine();
         while (lines != null) {
+            // display the lines on the file
             System.out.println("The contents in the file are: ");
             System.out.println(lines);
             lines = br.readLine();
